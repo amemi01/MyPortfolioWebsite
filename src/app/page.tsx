@@ -1,103 +1,77 @@
-import Image from "next/image";
+import React from "react";
+
+const nodeData = {
+  page: "top",
+  layout: {
+    navPosition: "left",
+    theme: "dark",
+  },
+  sections: [
+    {
+      type: "navigation",
+      items: [
+        { label: "トップページ", href: "#toppage" },
+        { label: "自己紹介", href: "#aboutme" },
+        { label: "制作実績", href: "#portfolio" },
+        { label: "口コミ実績", href: "#reviews" },
+        { label: "お問い合わせ", href: "#contact" },
+      ],
+    },
+    {
+      type: "TopPageSentence",
+      title: "コードでアイデアを形にする Webエンジニア",
+      stats: [
+        { label: "abecdef", value: "200+" },
+        { label: "abecdef", value: "2,000+" },
+        { label: "abecdef", value: "20,000+" },
+      ],
+      languageSwitch: {
+        default: "日本語",
+        alternate: "Resume",
+        position: "top-right",
+      },
+    },
+  ],
+};
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const { sections } = nodeData;
+  const nav = sections.find((s) => s.type === "navigation");
+  const TopPageSentence = sections.find((s) => s.type === "TopPageSentence");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+  return (
+    <main className="min-h-screen bg-black text-white flex">
+      {/* 左ナビゲーション */}
+      <nav className="fixed left-0 top-0 h-screen w-20 flex flex-col justify-center items-center text-xs gap-30 bg-black z-50">
+        {nav?.items.map((item) => (
+          <a key={item.href} href={item.href} className="-rotate-90 hover:underline">
+            {item.label}
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        ))}
+      </nav>
+
+      {/* 言語の切り替えボタン */}
+      <section className="flex-1 flex flex-col justify-center items-center text-center px-8">
+        <div className="absolute top-4 right-4 text-sm">
+          <button className="bg-[#D8A7B1]  text-white px-3 py-1 rounded mr-2">
+            {TopPageSentence?.languageSwitch.default}
+          </button>
+          <button className="bg-[#D8A7B1]  text-white px-3 py-1 rounded">
+            {TopPageSentence?.languageSwitch.alternate}
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <h1 className="text-3xl md:text-4xl font-semibold mb-4">
+          {TopPageSentence?.title}
+        </h1>
+        <div className="flex gap-8 mt-8">
+          {TopPageSentence?.stats.map((stat, index) => (
+            <div key={index} className="text-center border-r last:border-none pr-4 last:pr-0">
+              <div className="text-xl font-bold">{stat.value}</div>
+              <div className="text-sm">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
