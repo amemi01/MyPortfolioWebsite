@@ -79,18 +79,18 @@ export default function Home() {
             </button>
 
             {isOpen && (
-              <div className="absolute right-0 mt-2 w-28 bg-white text-black rounded shadow-md z-10">
+              <div className="absolute right-0 mt-2 w-28 bg-white text-black rounded shadow-md z-10" id="language">
                 <button
                   onClick={() => handleLanguageChange("ja")}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                 >
-                  日本語
+                  {t("language.japanese")}
                 </button>
                 <button
                   onClick={() => handleLanguageChange("en")}
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                 >
-                  English
+                  {t("language.english")}
                 </button>
               </div>
             )}
@@ -151,11 +151,9 @@ export default function Home() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.4 }}
         >
-          <h2 className="text-3xl font-semibold mb-4">自己紹介</h2>
+          <h2 className="text-3xl font-semibold mb-4">{t("aboutme.title")}</h2>
           <p className="max-w-2xl leading-relaxed text-center">
-            フルスタックエンジニアとして、React / Next.js / Node.js を中心に
-            UI からバックエンドまで幅広く担当。ユーザー体験と保守性を両立した
-            コード設計を得意としています。
+            {t("aboutme.description")}
           </p>
         </motion.section>
 
@@ -170,9 +168,9 @@ export default function Home() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.4 }}
         >
-          <h2 className="text-3xl font-semibold mb-4">制作実績</h2>
+          <h2 className="text-3xl font-semibold mb-4">{t("portfolio.title")}</h2>
           <p className="max-w-2xl leading-relaxed text-center">
-            代表的なプロジェクトや OSS への貢献を掲載します。
+            {t("portfolio.description")}
           </p>
         </motion.section>
 
@@ -187,9 +185,9 @@ export default function Home() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.4 }}
         >
-          <h2 className="text-3xl font-semibold mb-4">口コミ実績</h2>
+          <h2 className="text-3xl font-semibold mb-4">{t("reviews.title")}</h2>
           <p className="max-w-2xl leading-relaxed text-center">
-            クライアントやコラボレーターからのフィードバックを紹介します。
+            {t("reviews.description")}
           </p>
         </motion.section>
 
@@ -204,15 +202,15 @@ export default function Home() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.4 }}
         >
-          <h2 className="text-3xl font-semibold mb-4">お問い合わせ</h2>
+          <h2 className="text-3xl font-semibold mb-4">{t("contact.title")}</h2>
           <p className="max-w-2xl leading-relaxed text-center mb-6">
-            お仕事のご依頼やご相談はお気軽にご連絡ください。
+            {t("contact.description")}
           </p>
           <a
             href="mailto:example@example.com"
             className="bg-[#D8A7B1] text-white px-6 py-2 rounded hover:opacity-90"
           >
-            メールを送る
+            {t("contact.button")}
           </a>
         </motion.section>
       </div>

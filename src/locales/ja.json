@@ -1,5 +1,9 @@
 {
-  "language": "日本語",
+  "language": {
+    "japanese":  "日本語",
+    "english": "英語"
+  },
+
   "resume": "履歴書",
   "nav": {
     "home": "トップページ",
@@ -8,8 +12,31 @@
     "reviews": "口コミ実績",
     "contact": "お問い合わせ"
   },
-  "title": "コードでアイデアを形にする Webエンジニア",
-  "projects": "案件数",
-  "hours": "開発時間",
-  "lines": "行数"
+
+  "title": "Web Engineer Turning Ideas into Code",
+  "projects": "Projects",
+  "hours": "Hours",
+  "lines": "Lines",
+
+  "portfolio": {
+    "title": "制作実績",
+    "description": "代表的なプロジェクトや OSS への貢献を掲載します。"
+  },
+
+  "aboutme": {
+    "title": "自己紹介",
+    "description": "フルスタックエンジニアとして、React / Next.js / Node.js を中心にUI からバックエンドまで幅広く担当。ユーザー体験と保守性を両立したコード設計を得意としています。"
+  },
+
+  "reviews": {
+    "title": "制作実績",
+    "description": "フルスタックエンジニアとして、React / Next.js / Node.js を中心にUI からバックエンドまで幅広く担当。ユーザー体験と保守性を両立したコード設計を得意としています。"
+  },
+
+    "contact": {
+    "title": "お問い合わせ",
+    "description": "お仕事のご依頼やご相談はお気軽にご連絡ください。",
+    "button": "メールの送信"
+  }
 }
+

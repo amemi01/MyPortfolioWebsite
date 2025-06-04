@@ -1,5 +1,9 @@
 {
-  "language": "English",
+  "language": {
+    "japanese":  "Japanese",
+    "english": "English"
+  },
+
   "resume": "Resume",
   "nav": {
     "home": "Home",
@@ -11,5 +15,26 @@
   "title": "Web Engineer Turning Ideas into Code",
   "projects": "Projects",
   "hours": "Hours",
-  "lines": "Lines"
+  "lines": "Lines",
+
+  "portfolio": {
+    "title": "Portfolio",
+    "description": "Showcasing representative projects and contributions to open-source software (OSS)."
+  },
+
+  "aboutme": {
+    "title": "About Me",
+    "description": "Showcasing representative projects and contributions to open-source software (OSS)." 
+  },
+
+  "reviews":{
+    "title": "Reviews",
+    "description": "React / Next.js Showcasing representative projects and contributions to open-source software (OSS)."
+  },
+
+  "contact":{
+    "title": "Contact",
+    "description": "Feel free to reach out for work inquiries or consultations.",
+    "button": "Send Email"
+  }
 }
