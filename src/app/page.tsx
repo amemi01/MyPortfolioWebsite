@@ -1,23 +1,9 @@
 'use client';
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { useState } from "react"; // useState を追加
 
-/**
- * ページ内 5 セクション（トップ / 自己紹介 / 制作実績 / 口コミ実績 / お問い合わせ）を
- * 左サイドナビゲーションでスムーズスクロールしつつ、
- * ビューポート遷移時にセクションがスライドインするアニメーションを追加しました。
- *
- * - TailwindCSS v3 以上
- * - Framer Motion v10 以上 (app ディレクトリなら "framer-motion")
- */
-
-const navItems = [
-  { label: "トップページ", href: "#toppage" },
-  { label: "自己紹介", href: "#aboutme" },
-  { label: "制作実績", href: "#portfolio" },
-  { label: "口コミ実績", href: "#reviews" },
-  { label: "お問い合わせ", href: "#contact" },
-];
 
 const topPageData = {
   title: "コードでアイデアを形にする Webエンジニア",
@@ -27,16 +13,12 @@ const topPageData = {
     { label: "行数", value: "20,000+" },
   ],
   languageSwitch: {
-    default: "日本語",
-    alternate: "Resume",
+    language: "日本語",
+    resume: "履歴書",
   },
 };
 
-/**
- * セクションアニメーション共通設定
- *   - initial: 右 5% & 不透明度 0
- *   - animate: 原点 & 不透明度 1
- */
+
 const sectionVariants = {
   initial: { opacity: 0, y: 50 }, // 50px下から
   animate: {
@@ -50,6 +32,24 @@ const sectionVariants = {
 };
 
 export default function Home() {
+  
+  const { t, i18n } = useTranslation();
+
+  const navItems = [
+    { label: t("nav.home"), href: "#toppage" },
+    { label: t("nav.about"), href: "#aboutme" },
+    { label: t("nav.portfolio"), href: "#portfolio" },
+    { label: t("nav.reviews"), href: "#reviews" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setIsOpen(false); // メニューを閉じる
+  };
+
   return (
     <main className="min-h-screen bg-black text-white flex scroll-smooth">
       {/* ────────────────────────────
@@ -68,15 +68,42 @@ export default function Home() {
       </nav>
 
        {/* 言語切替 */}
-       <div className="absolute top-4 right-4 text-sm px-8 space-x-2">
-         <button className="bg-[#D8A7B1] text-white px-3 py-1 rounded">
-           {topPageData.languageSwitch.default}
-         </button>
-         <button className="bg-[#D8A7B1] text-white px-3 py-1 rounded">
-           {topPageData.languageSwitch.alternate}
-         </button>
-       </div>
+       <div className="absolute top-4 right-4 text-sm px-8 space-x-2 z-50">
+          <div className="relative inline-block text-left">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="bg-[#D8A7B1] text-white px-3 py-1 rounded"
+            >
+              {i18n.language === "ja" ? "日本語" : "English"}
+            </button>
 
+            {isOpen && (
+              <div className="absolute right-0 mt-2 w-28 bg-white text-black rounded shadow-md z-10">
+                <button
+                  onClick={() => handleLanguageChange("ja")}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  日本語
+                </button>
+                <button
+                  onClick={() => handleLanguageChange("en")}
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  English
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* 履歴書ダウンロード */}
+          <a
+            href="/resume.pdf"
+            download
+            className="bg-[#D8A7B1] text-white px-3 py-1 rounded inline-block"
+          >
+            {t("resume")}
+          </a>
+        </div>
 
 
       {/* ────────────────────────────

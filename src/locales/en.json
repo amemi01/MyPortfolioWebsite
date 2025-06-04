@@ -1,0 +1,15 @@
+{
+  "language": "English",
+  "resume": "Resume",
+  "nav": {
+    "home": "Home",
+    "about": "About Me",
+    "portfolio": "Portfolio",
+    "reviews": "Reviews",
+    "contact": "Contact"
+  },
+  "title": "Web Engineer Turning Ideas into Code",
+  "projects": "Projects",
+  "hours": "Hours",
+  "lines": "Lines"
+}

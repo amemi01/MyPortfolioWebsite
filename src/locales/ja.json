@@ -1,0 +1,15 @@
+{
+  "language": "日本語",
+  "resume": "履歴書",
+  "nav": {
+    "home": "トップページ",
+    "about": "自己紹介",
+    "portfolio": "制作実績",
+    "reviews": "口コミ実績",
+    "contact": "お問い合わせ"
+  },
+  "title": "コードでアイデアを形にする Webエンジニア",
+  "projects": "案件数",
+  "hours": "開発時間",
+  "lines": "行数"
+}
