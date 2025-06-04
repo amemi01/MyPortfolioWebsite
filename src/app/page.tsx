@@ -38,12 +38,15 @@ const topPageData = {
  *   - animate: 原点 & 不透明度 1
  */
 const sectionVariants = {
-  initial: { opacity: 0, x: "5%" },
+  initial: { opacity: 0, y: 50 }, // 50px下から
   animate: {
     opacity: 1,
-    x: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+    y: 0,
+    transition: {
+      duration: 2.0,
+      ease: "easeOut"
+    }
+  }
 };
 
 export default function Home() {
@@ -64,6 +67,18 @@ export default function Home() {
         ))}
       </nav>
 
+       {/* 言語切替 */}
+       <div className="absolute top-4 right-4 text-sm px-8 space-x-2">
+         <button className="bg-[#D8A7B1] text-white px-3 py-1 rounded">
+           {topPageData.languageSwitch.default}
+         </button>
+         <button className="bg-[#D8A7B1] text-white px-3 py-1 rounded">
+           {topPageData.languageSwitch.alternate}
+         </button>
+       </div>
+
+
+
       {/* ────────────────────────────
           コンテンツラッパー（スナップ＋スクロール）
       ──────────────────────────── */}
@@ -79,15 +94,6 @@ export default function Home() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.4 }}
         >
-          {/* 言語切替 */}
-          <div className="absolute top-4 right-4 text-sm space-x-2">
-            <button className="bg-[#D8A7B1] text-white px-3 py-1 rounded">
-              {topPageData.languageSwitch.default}
-            </button>
-            <button className="bg-[#D8A7B1] text-white px-3 py-1 rounded">
-              {topPageData.languageSwitch.alternate}
-            </button>
-          </div>
 
           <h1 className="text-3xl md:text-4xl font-semibold mb-6 text-center">
             {topPageData.title}
