@@ -1,40 +1,34 @@
 'use client';
-import React from "react";
+
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import "../i18n";
-import { useState } from "react"; // useState を追加
-
-
-const topPageData = {
-  title: "コードでアイデアを形にする Webエンジニア",
-  stats: [
-    { label: "案件数", value: "200+" },
-    { label: "開発時間", value: "2,000+" },
-    { label: "行数", value: "20,000+" },
-  ],
-  languageSwitch: {
-    language: "日本語",
-    resume: "履歴書",
-  },
-};
-
 
 const sectionVariants = {
-  initial: { opacity: 0, y: 50 }, // 50px下から
+  initial: { opacity: 0, y: 50 },
   animate: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 2.0,
-      ease: "easeOut"
-    }
-  }
+      ease: "easeOut",
+    },
+  },
 };
 
 export default function Home() {
-  
   const { t, i18n } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const topPageData = {
+    title: t("toppage.title"),
+    stats: [
+      { label: t("toppage.stats.projects"), value: "200+" },
+      { label: t("toppage.stats.tools"), value: "2,000+" },
+      { label: t("toppage.stats.years"), value: "20,000+" },
+    ],
+  };
 
   const navItems = [
     { label: t("nav.home"), href: "#toppage" },
@@ -44,19 +38,15 @@ export default function Home() {
     { label: t("nav.contact"), href: "#contact" },
   ];
 
-  const [isOpen, setIsOpen] = useState(false);
-
   const handleLanguageChange = (lang: string) => {
     i18n.changeLanguage(lang);
-    setIsOpen(false); // メニューを閉じる
+    setIsOpen(false);
   };
 
   return (
     <main className="min-h-screen bg-black text-white flex scroll-smooth">
-      {/* ────────────────────────────
-          左サイドナビゲーション
-      ──────────────────────────── */}
-      <nav className="fixed left-0 top-0 h-screen w-20 flex flex-col justify-center items-center text-xs gap-30 bg-black z-50">
+      {/* 左サイドナビゲーション */}
+      <nav className="fixed left-0 top-0 h-screen w-20 flex flex-col justify-center items-center text-sm gap-27 bg-black z-50">
         {navItems.map((item) => (
           <a
             key={item.href}
@@ -68,52 +58,49 @@ export default function Home() {
         ))}
       </nav>
 
-       {/* 言語切替 */}
-       <div className="absolute top-4 right-4 text-sm px-8 space-x-2 z-50">
-          <div className="relative inline-block text-left">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="bg-[#D8A7B1] text-white px-3 py-1 rounded"
-            >
-              {i18n.language === "ja" ? "日本語" : "English"}
-            </button>
-
-            {isOpen && (
-              <div className="absolute right-0 mt-2 w-28 bg-white text-black rounded shadow-md z-10" id="language">
-                <button
-                  onClick={() => handleLanguageChange("ja")}
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                >
-                  {t("language.japanese")}
-                </button>
-                <button
-                  onClick={() => handleLanguageChange("en")}
-                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                >
-                  {t("language.english")}
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* 履歴書ダウンロード */}
-          <a
-            href="/resume.pdf"
-            download
-            className="bg-[#D8A7B1] text-white px-3 py-1 rounded inline-block"
+      {/* 言語切替＆履歴書ダウンロード */}
+      <div className="fixed top-4 right-4 text-sm px-8 space-x-2 z-50">
+        <div className="relative inline-block text-left">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="bg-[#D8A7B1] text-white px-3 py-1 rounded"
           >
-            {t("resume")}
-          </a>
+            {i18n.language === "ja" ? "日本語" : "English"}
+          </button>
+
+          {isOpen && (
+            <div
+              className="absolute right-0 mt-2 w-28 bg-white text-black rounded shadow-md z-10"
+              id="language"
+            >
+              <button
+                onClick={() => handleLanguageChange("ja")}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                {t("language.japanese")}
+              </button>
+              <button
+                onClick={() => handleLanguageChange("en")}
+                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              >
+                {t("language.english")}
+              </button>
+            </div>
+          )}
         </div>
 
+        <a
+          href="/resume.pdf"
+          download
+          className="bg-[#D8A7B1] text-white px-3 py-1 rounded inline-block"
+        >
+          {t("resume")}
+        </a>
+      </div>
 
-      {/* ────────────────────────────
-          コンテンツラッパー（スナップ＋スクロール）
-      ──────────────────────────── */}
+      {/* コンテンツラッパー */}
       <div className="flex-1 overflow-y-scroll snap-y snap-mandatory">
-        {/* ============================== */}
-        {/* Top Page                      */}
-        {/* ============================== */}
+        {/* Top Page */}
         <motion.section
           id="toppage"
           className="min-h-screen snap-start flex flex-col justify-center items-center px-8 relative"
@@ -122,7 +109,6 @@ export default function Home() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.4 }}
         >
-
           <h1 className="text-3xl md:text-4xl font-semibold mb-6 text-center">
             {topPageData.title}
           </h1>
@@ -140,9 +126,7 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* ============================== */}
-        {/* About Me                       */}
-        {/* ============================== */}
+        {/* About Me */}
         <motion.section
           id="aboutme"
           className="min-h-screen snap-start flex flex-col justify-center items-center px-8"
@@ -157,9 +141,7 @@ export default function Home() {
           </p>
         </motion.section>
 
-        {/* ============================== */}
-        {/* Portfolio                      */}
-        {/* ============================== */}
+        {/* Portfolio */}
         <motion.section
           id="portfolio"
           className="min-h-screen snap-start flex flex-col justify-center items-center px-8"
@@ -174,9 +156,7 @@ export default function Home() {
           </p>
         </motion.section>
 
-        {/* ============================== */}
-        {/* Reviews                         */}
-        {/* ============================== */}
+        {/* Reviews */}
         <motion.section
           id="reviews"
           className="min-h-screen snap-start flex flex-col justify-center items-center px-8"
@@ -191,9 +171,7 @@ export default function Home() {
           </p>
         </motion.section>
 
-        {/* ============================== */}
-        {/* Contact                         */}
-        {/* ============================== */}
+        {/* Contact */}
         <motion.section
           id="contact"
           className="min-h-screen snap-start flex flex-col justify-center items-center px-8"
