@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import "../i18n";
+import { Link as Scroll } from 'react-scroll'
+
 
 const sectionVariants = {
   initial: { opacity: 0, y: 50 },
@@ -31,11 +33,11 @@ export default function Home() {
   };
 
   const navItems = [
-    { label: t("nav.home"), href: "#toppage" },
-    { label: t("nav.about"), href: "#aboutme" },
-    { label: t("nav.portfolio"), href: "#portfolio" },
-    { label: t("nav.reviews"), href: "#reviews" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.home"), to: "toppage" },
+    { label: t("nav.about"), to: "aboutme" },
+    { label: t("nav.portfolio"), to: "portfolio" },
+    { label: t("nav.reviews"), to: "reviews" },
+    { label: t("nav.contact"), to: "contact" },
   ];
 
   const handleLanguageChange = (lang: string) => {
@@ -48,15 +50,18 @@ export default function Home() {
       {/* 左サイドナビゲーション */}
       <nav className="fixed left-0 top-0 h-screen w-20 flex flex-col justify-center items-center text-sm gap-27 bg-black z-50">
         {navItems.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            className="-rotate-90 hover:underline whitespace-nowrap"
+          <Scroll
+            key={item.to}
+            to={item.to}
+            smooth={true}
+            duration={500}
+            className="-rotate-90 hover:underline whitespace-nowrap cursor-pointer"
           >
             {item.label}
-          </a>
+          </Scroll>
         ))}
       </nav>
+
 
       {/* 言語切替＆履歴書ダウンロード */}
       <div className="fixed top-4 right-4 text-sm px-8 space-x-2 z-50">
@@ -99,7 +104,7 @@ export default function Home() {
       </div>
 
       {/* コンテンツラッパー */}
-      <div className="flex-1 overflow-y-scroll snap-y snap-mandatory">
+      <div className="flex-1 overflow-y-hidden snap-y snap-mandatory">
         {/* Top Page */}
         <motion.section
           id="toppage"
