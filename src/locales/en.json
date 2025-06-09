@@ -40,6 +40,13 @@
   "contact": {
     "title": "Contact",
     "description": "Feel free to reach out for work inquiries or consultations.",
-    "button": "Send Email"
+    "name": "Name",
+    "email": "Email Address",
+    "message": "Message",
+    "namePlaceholder": "e.g. Taro Yamada",
+    "emailPlaceholder": "e.g. example@example.com",
+    "messagePlaceholder": "Please enter your message",
+    "button1": "Send Email",
+    "button2": "Send"
   }
 }
