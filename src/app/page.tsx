@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import "../i18n";
 import { Link as Scroll } from 'react-scroll';
+import '../styles/navItem.css'; 
 
 const sectionVariants = {
   initial: { opacity: 0, y: 50 },
@@ -46,16 +47,18 @@ export default function Home() {
     <main className="min-h-screen bg-black text-white flex scroll-smooth">
 
       {/* サイドナビ */}
-      <nav className="fixed left-0 top-0 h-screen w-20 flex flex-col justify-center items-center text-sm gap-27 bg-black z-50">
+      <nav className="nav-2 fixed left-0 top-0 h-screen w-20 flex flex-col justify-center items-center z-50">
         {navItems.map((item) => (
           <Scroll
             key={item.to}
             to={item.to}
             smooth
             duration={500}
-            className="-rotate-90 hover:underline whitespace-nowrap cursor-pointer"
+            className="item cursor-pointer"
           >
-            {item.label}
+            <div className="linktext" data-text={item.label}>
+              {item.label}
+            </div>
           </Scroll>
         ))}
       </nav>

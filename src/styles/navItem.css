@@ -1,0 +1,31 @@
+.nav-2 {
+  background: #000;
+  width: 100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly; /* ← 完全均等 */
+}
+
+.nav-2 .item {
+  margin: 48px 0;
+  cursor: pointer;
+}
+
+.nav-2 .linktext {
+  display: inline-block;
+  color: #FFFFFF;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin-left: -40px;
+}
+
+.nav-2 .item:hover .linktext {
+  color: #D8A7B1;
+  transform: rotate(-90deg) scale(1.3);
+}
