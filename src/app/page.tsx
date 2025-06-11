@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import "../i18n";
 import { Link as Scroll } from 'react-scroll';
 import '../styles/navItem.css'; 
+import '../styles/stars.css'; 
+import { StarField } from "./components/StarField"; 
 
 const sectionVariants = {
   initial: { opacity: 0, y: 50 },
@@ -45,7 +47,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white flex scroll-smooth">
-
+      {/* ⭐ 背景の星 */}
+      <StarField />
       {/* サイドナビ */}
       <nav className="nav-2 fixed left-0 top-0 h-screen w-20 flex flex-col justify-center items-center z-50">
         {navItems.map((item) => (
@@ -195,7 +198,7 @@ export default function Home() {
             </motion.div>
           )}
         </motion.section>
-
+        
       </div>
     </main>
   );
